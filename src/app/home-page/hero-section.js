@@ -1,6 +1,6 @@
 import React from 'react';
 
-const LoadingSpinner = () => {
+const HeroSection = () => {
     return (
         <div>
         
@@ -8,4 +8,4 @@ const LoadingSpinner = () => {
     );
 }
 
-export default LoadingSpinner;
+export default HeroSection;

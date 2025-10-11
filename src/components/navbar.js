@@ -3,8 +3,15 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { FaSearch, FaRegUserCircle, FaCog } from 'react-icons/fa';
 import ThemeSwitch from './theme-switch';
+import ThemeButton from './theme-button';
+import {
+    FiSearch,
+    FiBookmark,
+    FiUser,
+    FiSettings
+} from 'react-icons/fi';
+import ThemeInput from './theme-input';
 
 const Navbar = () => {
     const [searchQuery, setSearchQuery] = useState('');
@@ -14,41 +21,38 @@ const Navbar = () => {
         e.preventDefault();
         if (searchQuery.trim()) {
             router.push(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
-            setSearchQuery(''); // Clear search input after navigating
+            setSearchQuery('');
         }
     };
+
     return (
-        <header className='p-4 bg-foreground/5 bg-opacity-70 backdrop-blur-md shadow-lg'>
+        <header className="bg-foreground/5 py-4 backdrop-blur-md shadow-lg">
             <div className="container">
-                <nav className="flex items-center justify-between">
-                    <Link href="/" className="flex items-center space-x-2 text-2xl font-bold">
-                        <span className="text-primary">Cine</span>Sphere
+                <nav className="flex items-center justify-between gap-4">
+                    <Link href="/" className="flex items-center">
+                        <span className="text-primary heading-h6 font-bold">Eiga</span>
+                        <span className="text-foreground heading-h6 font-bold">Pulse</span>
                     </Link>
-                    <form onSubmit={handleSearch} className="flex-grow max-w-lg mx-8">
-                        <div className="relative">
-                            <input
-                                type="text"
-                                placeholder="Find movies, shows..."
-                                className="w-full pl-10 pr-4 py-2 rounded-full bg-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                                value={searchQuery}
-                                onChange={(e) => setSearchQuery(e.target.value)}
-                            />
-                            <button type="submit" className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white">
-                                <FaSearch size={18} />
-                            </button>
-                        </div>
+                    <form onSubmit={handleSearch} className="w-full max-w-[600px]">
+                        <ThemeInput
+                            type="text"
+                            placeholder="Search movies, anime, shows..."
+                            leftIcon={FiSearch}
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                        />
                     </form>
-                    <div className="flex items-center space-x-6">
-                        <Link href="/watchlist" className="transition-colors duration-200">
-                            My Watchlist
-                        </Link>
-                        <Link href="/profile" className="transition-colors duration-200">
-                            <FaRegUserCircle size={24} />
-                        </Link>
-                        <Link href="/settings" className="transition-colors duration-200">
-                            <FaCog size={22} />
-                        </Link>
-                        <ThemeSwitch/>
+                    <div className="flex items-center gap-1">
+                        <ThemeButton href="/" variant="ghost" size='icon'>
+                            <FiBookmark className="h-5 w-5" />
+                        </ThemeButton>
+                        <ThemeButton href="/" variant="ghost" size="icon">
+                            <FiUser className="h-5 w-5" />
+                        </ThemeButton>
+                        <ThemeButton href="/" variant="ghost" size="icon">
+                            <FiSettings className="h-5 w-5" />
+                        </ThemeButton>
+                        <ThemeSwitch />
                     </div>
                 </nav>
             </div>

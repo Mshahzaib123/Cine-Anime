@@ -8,7 +8,7 @@ import ThemeButton from './theme-button';
 const ThemeSwitch = () => {
     const { theme, toggleTheme } = useTheme();
     return (
-        <ThemeButton size='icon' variant='outline' onClick={toggleTheme} aria-label="Toggle theme">
+        <ThemeButton size='icon' variant='ghost' onClick={toggleTheme} aria-label="Toggle theme">
             {theme === "light" ? <IoMoon size={20} /> : <IoSunny size={20} />}
         </ThemeButton>
     );

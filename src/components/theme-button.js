@@ -13,7 +13,7 @@ const ThemeButton = ({
     ...props
 }) => {
     const baseClasses = clsx(
-        "flex items-center justify-center text-center",
+        "flex items-center justify-center text-center gap-2",
         "font-bold transition-all duration-400 ease-in-out",
         "rounded-full overflow-hidden"
     );
@@ -23,15 +23,19 @@ const ThemeButton = ({
             "hover:shadow-shadow"
         ),
         outline: clsx(
-            "border border-foreground/15 text-foreground/80 bg-foreground/5",
+            "border border-foreground/15 text-foreground/80 bg-foreground/6",
             "hover:bg-primary hover:text-white hover:border-transparent",
             "hover:shadow-shadow"
         ),
+        ghost: clsx(
+            "bg-transparent text-foreground/80",
+            "hover:bg-foreground/5 hover:text-primary"
+        ),
     };
     const sizes = {
-        sm: "px-4 py-[6px] text-sm",
-        md: "px-4 pt-[11px] pb-[11px] text-base",
-        lg: "px-8 py-[10px] text-xl",
+        sm: "px-4 py-[6px] small",
+        md: "px-4 py-2 base",
+        lg: "px-8 py-[10px] large",
         icon: "size-10.5 justify-center cursor-pointer"
     };
     const classes = clsx(

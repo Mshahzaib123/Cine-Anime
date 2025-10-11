@@ -13,8 +13,22 @@
   --background: var(--background-light);
   --foreground: var(--foreground-light);
 
+  /* Box Shadow Variables */
   --box-shadow: 0px 8px 50px
     color-mix(in srgb, var(--primary-color), transparent 50%);
+
+  /* Font Size Variables */
+  --font-size-h1: 64px;
+  --font-size-h2: 48px;
+  --font-size-h3: 42px;
+  --font-size-h4: 36px;
+  --font-size-h5: 32px;
+  --font-size-h6: 24px;
+  --font-size-l: 20px;
+  --font-size-m: 18px;
+  --font-size-s: 16px;
+  --font-size-xs: 14px;
+  --font-size-xss: 12px;
 }
 
 .light {
@@ -44,98 +58,65 @@ body {
 }
 .container {
   margin: 0 auto;
+  padding: 0 16px;
 }
 .heading-h1 {
   font-weight: bold;
   line-height: 120%;
   letter-spacing: -0.02em;
-  font-size: 40px;
+  font-size: var(--font-size-h1);
 }
 .heading-h2 {
   font-weight: bold;
   line-height: 125%;
   letter-spacing: -0.02em;
-  font-size: 32px;
+  font-size: var(--font-size-h2);
 }
 .heading-h3 {
   font-weight: bold;
   line-height: 135%;
   letter-spacing: -0.01em;
-  font-size: 24px;
+  font-size: var(--font-size-h3);
 }
 .heading-h4 {
   font-weight: bold;
   line-height: 125%;
   letter-spacing: -0.02em;
-  font-size: 24px;
+  font-size: var(--font-size-h4);
 }
 .heading-h5 {
   font-weight: bold;
   line-height: 130%;
   letter-spacing: -0.01em;
-  font-size: 20px;
+  font-size: var(--font-size-h5);
 }
 .heading-h6 {
   font-weight: bold;
   line-height: 135%;
   letter-spacing: -0.01em;
-  font-size: 20px;
+  font-size: var(--font-size-h6);
 }
 p {
+  font-size: var(--font-size-s);
   line-height: 150%;
-  font-size: 14px;
 }
 .extra-small {
   line-height: 150%;
-  font-size: 12px;
+  font-size: var(--font-size-xss);
 }
 .small {
   line-height: 150%;
-  font-size: 14px;
+  font-size: var(--font-size-xs);
 }
 .base {
   line-height: 150%;
-  font-size: 16px;
+  font-size: var(--font-size-s);
 }
 .large {
   line-height: 150%;
-  font-size: 16px;
+  font-size: var(--font-size-m);
 }
 .extra-large {
   line-height: 150%;
-  font-size: 16px;
-}
-@media (min-width: 576px) {
-  .heading-h1 {
-    font-size: 56px;
-  }
-  .heading-h2 {
-    font-size: 40px;
-  }
-  .large {
-    font-size: 18px;
-  }
-  .extra-large {
-    font-size: 20px;
-  }
-}
-@media (min-width: 1024px) {
-  .heading-h1 {
-    font-size: 64px;
-  }
-  .heading-h2 {
-    font-size: 48px;
-  }
-  .heading-h3 {
-    font-size: 24px;
-  }
-  .heading-h4 {
-    font-size: 48px;
-  }
-  .heading-h5 {
-    font-size: 32px;
-  }
-  .heading-h6 {
-    font-size: 24px;
-  }
+  font-size: var(--font-size-l);
 }
