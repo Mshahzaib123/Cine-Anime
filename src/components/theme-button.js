@@ -12,25 +12,35 @@ const ThemeButton = ({
     className = "",
     ...props
 }) => {
-    const baseClasses =
-        "flex items-center justify-center gap-2 font-bold transition-all duration-300 capitalize";
+    const baseClasses = clsx(
+        "flex items-center justify-center text-center",
+        "font-bold transition-all duration-400 ease-in-out",
+        "rounded-full overflow-hidden"
+    );
     const variants = {
         fill: clsx(
-            "bg-primary text-secondary",
-            "hover:bg-secondary hover:text-dark"
+            "bg-primary text-white",
+            "hover:shadow-shadow"
         ),
         outline: clsx(
-            "border border-primary text-secondary bg-transparent",
-            "hover:bg-primary hover:text-secondary hover:border-transparent"
+            "border border-foreground/15 text-foreground/80 bg-foreground/5",
+            "hover:bg-primary hover:text-white hover:border-transparent",
+            "hover:shadow-shadow"
         ),
     };
     const sizes = {
-        sm: "px-4 py-[6px] text-xs",
-        md: "px-4 pt-1.5 pb-[7px] text-sm",
-        lg: "px-8 py-[10px] heading-m font-bold",
+        sm: "px-4 py-[6px] text-sm",
+        md: "px-4 pt-[11px] pb-[11px] text-base",
+        lg: "px-8 py-[10px] text-xl",
         icon: "size-10.5 justify-center cursor-pointer"
     };
-    const classes = clsx(baseClasses, variants[variant], sizes[size], className);
+    const classes = clsx(
+        baseClasses,
+        variants[variant],
+        sizes[size],
+        className
+    );
+
     if (href) {
         return (
             <Link href={href} className={classes} {...props}>

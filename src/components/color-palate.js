@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useTheme } from "../context/theme-provider";
+import ThemeButton from "./theme-button";
 
 const initialColors = [
     "#3b82f6",
@@ -103,12 +104,12 @@ export default function ColorPalette() {
                     }}
                 />
             </div>
-            <button
+            <ThemeButton
                 onClick={handleReset}
                 className="theme-btn cursor-pointer"
             >
                 Reset
-            </button>
+            </ThemeButton>
         </div>
     );
 }

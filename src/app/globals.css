@@ -6,7 +6,7 @@
   --background-dark: #0a0a0a;
   --foreground-dark: #e5e5e5;
 
-  --primary-color: #1d4ed8;
+  --primary-color: #3b82f6;
   --white: #e5e5e5;
   --black: #0a0a0a;
 
@@ -56,13 +56,6 @@ body {
   line-height: 125%;
   letter-spacing: -0.02em;
   font-size: 32px;
-}
-h1 sup,
-h2 sup {
-  font-size: 60%;
-  opacity: 50%;
-  top: -0.7em;
-  font-weight: bold;
 }
 .heading-h3 {
   font-weight: bold;
@@ -145,31 +138,4 @@ p {
   .heading-h6 {
     font-size: 24px;
   }
-}
-.theme-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  line-height: 150%;
-  padding: 11px 16px;
-  font-weight: bold;
-  background-color: var(--primary-color);
-  border-top: 1.5px solid var(--white);
-  color: var(--white);
-  overflow: hidden;
-  border-radius: 50px;
-  transition: 0.4s;
-}
-.theme-btn:hover {
-  box-shadow: var(--box-shadow);
-}
-.btn-small {
-  font-size: 14px;
-}
-.btn-medium {
-  font-size: 16px;
-}
-.btn-large {
-  font-size: 20px;
 }

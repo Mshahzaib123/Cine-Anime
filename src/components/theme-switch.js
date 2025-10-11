@@ -3,13 +3,14 @@
 import React from 'react';
 import { useTheme } from '../context/theme-provider';
 import { IoSunny, IoMoon } from 'react-icons/io5';
+import ThemeButton from './theme-button';
 
 const ThemeSwitch = () => {
     const { theme, toggleTheme } = useTheme();
     return (
-        <button className="theme-btn" onClick={toggleTheme} aria-label="Toggle theme">
+        <ThemeButton size='icon' variant='outline' onClick={toggleTheme} aria-label="Toggle theme">
             {theme === "light" ? <IoMoon size={20} /> : <IoSunny size={20} />}
-        </button>
+        </ThemeButton>
     );
 }
 
