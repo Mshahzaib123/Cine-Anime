@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ErrorDisplay = () => {
+const PopularSection = () => {
     return (
         <div>
         
@@ -8,4 +8,4 @@ const ErrorDisplay = () => {
     );
 }
 
-export default ErrorDisplay;
+export default PopularSection;

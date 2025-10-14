@@ -5,13 +5,13 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import ThemeSwitch from './theme-switch';
 import ThemeButton from './theme-button';
+import ThemeInput from './theme-input';
 import {
     FiSearch,
     FiBookmark,
     FiUser,
     FiSettings
 } from 'react-icons/fi';
-import ThemeInput from './theme-input';
 
 const Navbar = () => {
     const [searchQuery, setSearchQuery] = useState('');
@@ -24,7 +24,6 @@ const Navbar = () => {
             setSearchQuery('');
         }
     };
-
     return (
         <header className="bg-foreground/5 py-4 backdrop-blur-md shadow-lg">
             <div className="container">
