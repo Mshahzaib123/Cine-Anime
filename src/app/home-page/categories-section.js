@@ -27,7 +27,7 @@ const CategoriesSection = () => {
             try {
                 // Fetch movie genres
                 const movieGenres = await fetchGenres('movie');
-                setGenres(movieGenres.slice(0, 8)); // Show only 8 categories
+                setGenres(movieGenres.slice(0, 12)); // Show only 8 categories
             } catch (error) {
                 console.error('Failed to load genres:', error);
             } finally {
@@ -43,8 +43,8 @@ const CategoriesSection = () => {
             <section className="py-16 container">
                 <div className="animate-pulse space-y-4">
                     <div className="h-10 bg-foreground/10 rounded w-1/3" />
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        {Array.from({ length: 8 }).map((_, i) => (
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+                        {Array.from({ length: 12 }).map((_, i) => (
                             <div key={i} className="h-12 bg-foreground/10 rounded" />
                         ))}
                     </div>
@@ -69,7 +69,7 @@ const CategoriesSection = () => {
 
             {/* Categories Grid */}
             <div 
-                className="grid grid-cols-2 md:grid-cols-4 gap-4"
+                className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6"
                 data-animate="up"
                 data-delay="0.1"
             >

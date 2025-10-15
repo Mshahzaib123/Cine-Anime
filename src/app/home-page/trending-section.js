@@ -17,7 +17,7 @@ const TrendingSection = () => {
         setLoading(true);
             try {
                 const data = await fetchTrending(mediaType, 'day');
-                setTrendingContent(data.slice(0, 12)); // Show only 12 items
+                setTrendingContent(data.slice(0, 18)); // Show only 12 items
             } catch (error) {
                 console.error('Failed to load trending content:', error);
             } finally {
@@ -78,7 +78,7 @@ const TrendingSection = () => {
 
             {/* Content Grid */}
             {loading ? (
-                <LoadingSkeleton count={12} />
+                <LoadingSkeleton count={18} />
             ) : (
                 <div 
                     className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4"
@@ -87,9 +87,9 @@ const TrendingSection = () => {
                 >
                     {trendingContent.map((item) => (
                         <CommonCard
-                        key={item.id}
-                        {...item}
-                        media_type={item.media_type || mediaType}
+                            key={item.id}
+                            {...item}
+                            media_type={item.media_type || mediaType}
                         />
                     ))}
                 </div>
