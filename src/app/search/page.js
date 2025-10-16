@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { FiSearch, FiFilter } from 'react-icons/fi';
 import CommonCard from '@/components/common-card';
@@ -18,17 +18,11 @@ const SearchPage = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const [totalResults, setTotalResults] = useState(0);
-    const [mediaFilter, setMediaFilter] = useState('all'); // all, movie, tv, person
+    const [mediaFilter, setMediaFilter] = useState('all');
 
-    useEffect(() => {
-        if (query) {
-            loadResults(currentPage);
-        }
-    }, [query, currentPage, mediaFilter]);
-
-    const loadResults = async (page) => {
+    const loadResults = useCallback(async (page) => {
         setLoading(true);
-            try {
+        try {
             const data = await searchContent(query, page);
             
             // Filter by media type if needed
@@ -46,7 +40,13 @@ const SearchPage = () => {
         } finally {
             setLoading(false);
         }
-    };
+    }, [query, mediaFilter]);
+
+    useEffect(() => {
+        if (query) {
+            loadResults(currentPage);
+        }
+    }, [query, currentPage, loadResults]);
 
     const handlePageChange = (page) => {
         setCurrentPage(page);
@@ -71,7 +71,7 @@ const SearchPage = () => {
                         <p className="large text-foreground/70">
                             {query ? (
                                 <>
-                                    Showing results for <span className="text-primary font-semibold">"{query}"</span>
+                                    Showing results for <span className="text-primary font-semibold">{query}</span>
                                     {totalResults > 0 && (
                                         <span className="text-foreground/60"> - {totalResults} results found</span>
                                     )}

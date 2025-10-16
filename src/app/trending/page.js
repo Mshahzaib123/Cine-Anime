@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { FiTrendingUp } from 'react-icons/fi';
 import CommonCard from '@/components/common-card';
 import LoadingSkeleton from '@/components/loading-skeleton';
@@ -12,15 +12,11 @@ const TrendingPage = () => {
     const [content, setContent] = useState([]);
     const [loading, setLoading] = useState(true);
     const [mediaType, setMediaType] = useState('all');
-    const [timeWindow, setTimeWindow] = useState('week'); // day, week
+    const [timeWindow, setTimeWindow] = useState('week');
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 18;
 
-    useEffect(() => {
-        loadContent();
-    }, [mediaType, timeWindow]);
-
-    const loadContent = async () => {
+    const loadContent = useCallback(async () => {
         setLoading(true);
         try {
             const data = await fetchTrending(mediaType, timeWindow);
@@ -31,7 +27,11 @@ const TrendingPage = () => {
         } finally {
             setLoading(false);
         }
-    };
+    }, [mediaType, timeWindow]);
+
+    useEffect(() => {
+        loadContent();
+    }, [loadContent]);
 
     // Pagination logic
     const totalPages = Math.ceil(content.length / itemsPerPage);

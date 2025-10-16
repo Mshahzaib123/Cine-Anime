@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { FiGrid } from 'react-icons/fi';
 import CommonCard from '@/components/common-card';
@@ -21,29 +21,19 @@ const CategoriesPage = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 18;
 
-    useEffect(() => {
-        loadGenres();
-    }, [mediaType]);
-
-    useEffect(() => {
-        if (selectedGenre) {
-        loadContent();
-        }
-    }, [selectedGenre, mediaType]);
-
-    const loadGenres = async () => {
+    const loadGenres = useCallback(async () => {
         try {
             const data = await fetchGenres(mediaType);
             setGenres(data);
-        if (!selectedGenre && data.length > 0) {
-            setSelectedGenre(data[0].id.toString());
-        }
+            if (!selectedGenre && data.length > 0) {
+                setSelectedGenre(data[0].id.toString());
+            }
         } catch (error) {
             console.error('Failed to load genres:', error);
         }
-    };
+    }, [mediaType, selectedGenre]);
 
-    const loadContent = async () => {
+    const loadContent = useCallback(async () => {
         if (!selectedGenre) return;
         
         setLoading(true);
@@ -56,7 +46,17 @@ const CategoriesPage = () => {
         } finally {
             setLoading(false);
         }
-    };
+    }, [selectedGenre, mediaType]);
+
+    useEffect(() => {
+        loadGenres();
+    }, [loadGenres]);
+
+    useEffect(() => {
+        if (selectedGenre) {
+            loadContent();
+        }
+    }, [selectedGenre, loadContent]);
 
     const handleGenreChange = (genreId) => {
         setSelectedGenre(genreId);
