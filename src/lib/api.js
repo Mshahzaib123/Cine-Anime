@@ -146,15 +146,29 @@ export const fetchGenres = async (mediaType = 'movie') => {
 };
 
 // Fetch anime from Jikan API (MyAnimeList)
-export const fetchAnime = async (type = 'top', page = 1) => {
+export const fetchAnime = async (filter = 'popularity', page = 1) => {
   try {
-    const response = await axios.get(`${JIKAN_BASE_URL}/anime`, {
-      params: {
-        page,
-        limit: 20,
-        order_by: 'popularity',
-      },
-    });
+    let endpoint = `${JIKAN_BASE_URL}/top/anime`;
+    const params = {
+      page,
+      limit: 25,
+    };
+
+    // Determine endpoint based on filter
+    switch (filter) {
+      case 'score':
+        params.filter = 'bypopularity';
+        break;
+      case 'upcoming':
+        params.filter = 'upcoming';
+        break;
+      case 'popularity':
+      default:
+        params.filter = 'bypopularity';
+        break;
+    }
+
+    const response = await axios.get(endpoint, { params });
     return response.data.data;
   } catch (error) {
     console.error('Error fetching anime:', error);

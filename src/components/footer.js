@@ -78,6 +78,11 @@ const Footer = () => {
                                 </Link>
                             </li>
                             <li>
+                                <Link href="/anime" className="text-foreground/70 hover:text-primary transition-colors small">
+                                    Anime
+                                </Link>
+                            </li>
+                            <li>
                                 <Link href="/watchlist" className="text-foreground/70 hover:text-primary transition-colors small">
                                     My Watchlist
                                 </Link>

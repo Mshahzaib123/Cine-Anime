@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "../context/theme-provider";
 import AnimationProvider from "../context/animation-provider";
 import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
 
 import "./globals.css";
 
@@ -30,6 +31,7 @@ export default function RootLayout({ children }) {
           >
             <Navbar/>
             {children}
+            <Footer/>
           </body>
         </AnimationProvider>
       </ThemeProvider>

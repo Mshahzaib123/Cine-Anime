@@ -5,7 +5,6 @@ import { FiTrendingUp } from 'react-icons/fi';
 import CommonCard from '@/components/common-card';
 import LoadingSkeleton from '@/components/loading-skeleton';
 import Pagination from '@/components/pagination';
-import Footer from '@/components/footer';
 import { fetchTrending } from '@/lib/api';
 
 const TrendingPage = () => {
@@ -45,7 +44,6 @@ const TrendingPage = () => {
     };
 
     return (
-        <>
         <main className="min-h-screen py-16">
             <div className="container">
                 {/* Header */}
@@ -166,8 +164,6 @@ const TrendingPage = () => {
                 )}
             </div>
         </main>
-        <Footer />
-        </>
     );
 };
 

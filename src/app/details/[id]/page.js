@@ -9,7 +9,6 @@ import CastCrewList from '@/components/cast-crew-list';
 import CommonCard from '@/components/common-card';
 import TrailerEmbed from '@/components/trailer-embed';
 import Loader from '@/components/loader';
-import Footer from '@/components/footer';
 import { fetchDetails, getImageUrl, BACKDROP_SIZE } from '@/lib/api';
 import { 
     FiPlay, 
@@ -353,7 +352,6 @@ const DetailsPage = ({ params }) => {
                     onClose={() => setShowTrailer(false)}
                 />
             )}
-            <Footer />
         </>
     );
 };
