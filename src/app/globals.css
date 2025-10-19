@@ -54,11 +54,11 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Geist", "Geist Fallback";
 }
 .container {
   margin: 0 auto;
-  padding: 0 16px;
+  padding: 0 12px;
 }
 .heading-h1 {
   font-weight: bold;
@@ -98,25 +98,25 @@ body {
 }
 p {
   font-size: var(--font-size-s);
-  line-height: 150%;
+  line-height: 140%;
 }
 .extra-small {
-  line-height: 150%;
+  line-height: 140%;
   font-size: var(--font-size-xss);
 }
 .small {
-  line-height: 150%;
+  line-height: 140%;
   font-size: var(--font-size-xs);
 }
 .base {
-  line-height: 150%;
+  line-height: 140%;
   font-size: var(--font-size-s);
 }
 .large {
-  line-height: 150%;
+  line-height: 140%;
   font-size: var(--font-size-m);
 }
 .extra-large {
-  line-height: 150%;
+  line-height: 140%;
   font-size: var(--font-size-l);
 }

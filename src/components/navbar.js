@@ -29,13 +29,10 @@ const Navbar = () => {
         <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-md shadow-lg border-b border-foreground/10">
             <div className="container">
                 <nav className="flex items-center justify-between gap-4 py-4">
-                    {/* Logo */}
                     <Link href="/" className="flex items-center flex-shrink-0">
                         <span className="text-primary heading-h6 font-bold">Eiga</span>
                         <span className="text-foreground heading-h6 font-bold">Pulse</span>
                     </Link>
-
-                    {/* Search Bar */}
                     <form onSubmit={handleSearch} className="w-full max-w-[600px] hidden md:block">
                         <ThemeInput
                             type="text"
@@ -45,8 +42,6 @@ const Navbar = () => {
                             onChange={(e) => setSearchQuery(e.target.value)}
                         />
                     </form>
-
-                    {/* Action Buttons */}
                     <div className="flex items-center gap-1 flex-shrink-0">
                         <ThemeButton 
                             href="/watchlist" 
@@ -75,8 +70,6 @@ const Navbar = () => {
                         <ThemeSwitch />
                     </div>
                 </nav>
-
-                {/* Mobile Search Bar */}
                 <form onSubmit={handleSearch} className="pb-4 md:hidden">
                     <ThemeInput
                         type="text"

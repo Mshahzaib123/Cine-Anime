@@ -1,6 +1,7 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist } from "next/font/google";
 import { ThemeProvider } from "../context/theme-provider";
 import AnimationProvider from "../context/animation-provider";
+import clsx from "clsx";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 
@@ -8,11 +9,6 @@ import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
   subsets: ["latin"],
 });
 
@@ -27,7 +23,7 @@ export default function RootLayout({ children }) {
       <ThemeProvider>
         <AnimationProvider>
           <body
-            className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+            className={clsx("antialiased", geistSans.variable)}
           >
             <Navbar/>
             {children}

@@ -19,7 +19,7 @@ const ThemeButton = ({
     );
     const variants = {
         fill: clsx(
-            "bg-primary text-white",
+            "bg-primary border border-primary text-white",
             "hover:shadow-shadow"
         ),
         outline: clsx(

@@ -43,37 +43,28 @@ const TrendingSection = () => {
             </div>
 
             {/* Filter Tabs */}
-            <div className="flex items-center gap-3 mb-8" data-animate="up" data-delay="0.1">
-                <button
+            <div className="flex items-center gap-3 mb-8">
+                <ThemeButton
+                    variant={mediaType === 'all' ? "fill" : "outline"}
                     onClick={() => setMediaType('all')}
-                    className={`px-6 py-2 rounded-full font-semibold transition-all duration-300 ${
-                        mediaType === 'all'
-                        ? 'bg-primary text-white shadow-shadow'
-                        : 'bg-foreground/5 text-foreground/70 hover:bg-foreground/10'
-                    }`}
+                    className="cursor-pointer"
                 >
                     All
-                </button>
-                <button
+                </ThemeButton>
+                <ThemeButton
+                    variant={mediaType === 'movie' ? "fill" : "outline"}
                     onClick={() => setMediaType('movie')}
-                    className={`px-6 py-2 rounded-full font-semibold transition-all duration-300 ${
-                        mediaType === 'movie'
-                        ? 'bg-primary text-white shadow-shadow'
-                        : 'bg-foreground/5 text-foreground/70 hover:bg-foreground/10'
-                    }`}
+                    className="cursor-pointer"
                 >
                     Movies
-                </button>
-                <button
+                </ThemeButton>
+                <ThemeButton
+                    variant={mediaType === 'tv' ? "fill" : "outline"}
                     onClick={() => setMediaType('tv')}
-                    className={`px-6 py-2 rounded-full font-semibold transition-all duration-300 ${
-                        mediaType === 'tv'
-                        ? 'bg-primary text-white shadow-shadow'
-                        : 'bg-foreground/5 text-foreground/70 hover:bg-foreground/10'
-                    }`}
+                    className="cursor-pointer"
                 >
                     TV Shows
-                </button>
+                </ThemeButton>
             </div>
 
             {/* Content Grid */}
@@ -81,7 +72,7 @@ const TrendingSection = () => {
                 <LoadingSkeleton count={18} />
             ) : (
                 <div 
-                    className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4"
+                    className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4"
                     data-animate="zoom"
                     data-delay="0.2"
                 >

@@ -17,7 +17,6 @@ const HeroSection = () => {
         const loadTrending = async () => {
             try {
                 const data = await fetchTrending('all', 'week');
-                // Get top 5 trending items for rotation
                 const topItems = data.slice(0, 5);
                 setAllContent(topItems);
                 setFeaturedContent(topItems[0]);
@@ -36,9 +35,9 @@ const HeroSection = () => {
         if (allContent.length > 1) {
             const interval = setInterval(() => {
                 setCurrentIndex((prev) => {
-                const next = (prev + 1) % allContent.length;
-                setFeaturedContent(allContent[next]);
-                return next;
+                    const next = (prev + 1) % allContent.length;
+                    setFeaturedContent(allContent[next]);
+                    return next;
                 });
             }, 5000);
 
@@ -62,7 +61,6 @@ const HeroSection = () => {
 
     return (
         <section className="relative h-[90vh] min-h-[600px] overflow-hidden">
-            {/* Background Image */}
             <div className="absolute inset-0">
                 <Image
                     src={backdropUrl}
@@ -72,20 +70,14 @@ const HeroSection = () => {
                     className="object-cover"
                     quality={90}
                 />
-                {/* Gradient Overlays */}
                 <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent" />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
             </div>
-
-            {/* Content */}
             <div className="container relative h-full flex items-center">
                 <div className="max-w-2xl space-y-6" data-animate="up" data-up-from="60">
-                    {/* Title */}
                     <h1 className="heading-h1 text-foreground drop-shadow-lg">
                         {title}
                     </h1>
-
-                    {/* Meta Info */}
                     <div className="flex items-center gap-4 text-foreground/80">
                         <div className="flex items-center gap-2 bg-foreground/10 backdrop-blur-sm px-3 py-1 rounded-full">
                             <FiStar className="text-yellow-400" />
@@ -98,23 +90,18 @@ const HeroSection = () => {
                             {featuredContent.media_type || 'movie'}
                         </span>
                     </div>
-
-                    {/* Overview */}
                     <p className="large text-foreground/90 line-clamp-3 drop-shadow-md">
                         {featuredContent.overview || 'No description available.'}
                     </p>
-
-                    {/* Action Buttons */}
                     <div className="flex flex-wrap items-center gap-4">
                         <ThemeButton 
                             href={`/details/${featuredContent.id}?type=${featuredContent.media_type || 'movie'}`}
                             size="lg"
                             variant="fill"
                         >
-                        <FiPlay className="w-5 h-5" />
+                            <FiPlay className="w-5 h-5" />
                             Watch Now
                         </ThemeButton>
-                        
                         <ThemeButton 
                             href={`/details/${featuredContent.id}?type=${featuredContent.media_type || 'movie'}`}
                             size="lg"
@@ -132,8 +119,6 @@ const HeroSection = () => {
                             Watchlist
                         </ThemeButton>
                     </div>
-
-                    {/* Rotation Indicators */}
                     <div className="flex items-center gap-2">
                         {allContent.map((_, index) => (
                             <button
