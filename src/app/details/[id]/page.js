@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, use } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import ThemeButton from '@/components/theme-button';
@@ -20,7 +20,8 @@ import {
 } from 'react-icons/fi';
 
 const DetailsPage = ({ params }) => {
-    const { id } = params;
+    const unwrappedParams = use(params);
+    const { id } = unwrappedParams;
     const searchParams = useSearchParams();
     const mediaType = searchParams.get('type') || 'movie';
     
