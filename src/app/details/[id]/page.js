@@ -9,6 +9,7 @@ import CastCrewList from '@/components/cast-crew-list';
 import CommonCard from '@/components/common-card';
 import TrailerEmbed from '@/components/trailer-embed';
 import Loader from '@/components/loader';
+import VideoPlayer from '@/components/video-player';
 import { fetchDetails, getImageUrl, BACKDROP_SIZE } from '@/lib/api';
 import { 
     FiPlay, 
@@ -16,7 +17,8 @@ import {
     FiCheck,
     FiCalendar, 
     FiClock,
-    FiGlobe
+    FiGlobe,
+    FiFilm
 } from 'react-icons/fi';
 
 const DetailsPage = ({ params }) => {
@@ -29,6 +31,7 @@ const DetailsPage = ({ params }) => {
     const [loading, setLoading] = useState(true);
     const [isInWatchlist, setIsInWatchlist] = useState(false);
     const [showTrailer, setShowTrailer] = useState(false);
+    const [showPlayer, setShowPlayer] = useState(false);
 
     useEffect(() => {
         const loadDetails = async () => {
@@ -196,12 +199,21 @@ const DetailsPage = ({ params }) => {
 
                                 {/* Action Buttons */}
                                 <div className="flex flex-wrap gap-4">
+                                    <ThemeButton
+                                        size="lg"
+                                        onClick={() => setShowPlayer(true)}
+                                    >
+                                        <FiPlay className="w-5 h-5" />
+                                        Watch Now
+                                    </ThemeButton>
+
                                     {trailer && (
                                         <ThemeButton
                                             size="lg"
+                                            variant="outline"
                                             onClick={() => setShowTrailer(true)}
                                         >
-                                        <FiPlay className="w-5 h-5" />
+                                            <FiFilm className="w-5 h-5" />
                                             Watch Trailer
                                         </ThemeButton>
                                     )}
@@ -351,6 +363,16 @@ const DetailsPage = ({ params }) => {
                 <TrailerEmbed
                     videoKey={trailer.key}
                     onClose={() => setShowTrailer(false)}
+                />
+            )}
+
+            {/* Video Player Modal */}
+            {showPlayer && (
+                <VideoPlayer
+                    tmdbId={id}
+                    mediaType={mediaType}
+                    title={title}
+                    onClose={() => setShowPlayer(false)}
                 />
             )}
         </>
