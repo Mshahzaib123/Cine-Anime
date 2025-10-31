@@ -52,7 +52,7 @@ const AboutPage = () => {
                 </div>
 
                 {/* Mission Section */}
-                <section className="mb-16" data-animate="up" data-delay="0.1">
+                <section className="mb-28" data-animate="up" data-delay="0.1">
                     <div className="bg-gradient-to-br from-primary/10 to-primary/5 rounded-3xl p-8 md:p-12 border border-primary/20">
                         <h2 className="heading-h2 text-foreground mb-6">Our Mission</h2>
                         <p className="large text-foreground/80 leading-relaxed mb-6">
@@ -65,7 +65,7 @@ const AboutPage = () => {
                 </section>
 
                 {/* Stats Grid */}
-                <section className="mb-16" data-animate="up" data-delay="0.2">
+                <section className="mb-28" data-animate="up" data-delay="0.2">
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                         {stats.map((stat, index) => (
                             <div
@@ -80,7 +80,7 @@ const AboutPage = () => {
                 </section>
 
                 {/* Features Grid */}
-                <section className="mb-16" data-animate="up" data-delay="0.3">
+                <section className="mb-28" data-animate="up" data-delay="0.3">
                     <h2 className="heading-h2 text-foreground text-center mb-12">
                         What We Offer
                     </h2>
@@ -105,7 +105,7 @@ const AboutPage = () => {
                 </section>
 
                 {/* Technology Stack */}
-                <section className="mb-16" data-animate="up" data-delay="0.4">
+                <section className="mb-28" data-animate="up" data-delay="0.4">
                     <div className="bg-foreground/5 rounded-3xl p-8 md:p-12 border border-foreground/10">
                         <h2 className="heading-h2 text-foreground mb-6">Built With Modern Technology</h2>
                         <p className="large text-foreground/80 mb-8">
@@ -157,7 +157,7 @@ const AboutPage = () => {
                 </section>
 
                 {/* Team/Vision Section */}
-                <section className="mb-16" data-animate="up" data-delay="0.5">
+                <section className="mb-28" data-animate="up" data-delay="0.5">
                     <div className="bg-foreground/5 rounded-3xl p-8 md:p-12 border border-foreground/10">
                         <h2 className="heading-h2 text-foreground mb-6">Our Vision</h2>
                         <p className="large text-foreground/80 leading-relaxed mb-6">

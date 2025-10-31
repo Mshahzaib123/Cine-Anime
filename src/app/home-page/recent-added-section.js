@@ -6,6 +6,7 @@ import CommonCard from '@/components/common-card';
 import ThemeButton from '@/components/theme-button';
 import LoadingSkeleton from '@/components/loading-skeleton';
 import { fetchNowPlaying } from '@/lib/api';
+import TitleViewAll from '@/components/title-view-all';
 
 const RecentAddedSection = () => {
     const [recentContent, setRecentContent] = useState([]);
@@ -46,43 +47,37 @@ const RecentAddedSection = () => {
     }, []);
 
     return (
-        <section className="py-16 container">
-        {/* Section Header */}
-            <div className="flex items-center justify-between mb-8" data-animate="up">
-                <div className="flex items-center gap-3">
-                    <FiClock className="text-primary w-8 h-8" />
-                    <h2 className="heading-h2 text-foreground">Recently Added</h2>
-                </div>
-                <ThemeButton href="/suggested" variant="ghost">
-                    See All
-                    <FiChevronRight className="w-5 h-5" />
-                </ThemeButton>
+        <section className="my-28">
+            <div className="container">
+                <TitleViewAll
+                    className="mb-16"
+                    TitleIcon={FiClock}
+                    title="Recently Added"
+                    buttonText="See All"
+                    href="/suggested"
+                />
+                {loading ? (
+                    <LoadingSkeleton count={12} />
+                ) : (
+                    <div 
+                        className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4"
+                        data-animate="zoom"
+                        data-delay="0.2"
+                    >
+                        {recentContent.map((item) => (
+                            <CommonCard
+                                key={`${item.media_type}-${item.id}`}
+                                {...item}
+                            />
+                        ))}
+                    </div>
+                )}
+                {!loading && recentContent.length === 0 && (
+                    <div className="text-center py-12">
+                        <p className="large text-foreground/60">No recent content found.</p>
+                    </div>
+                )}
             </div>
-
-            {/* Content Grid */}
-            {loading ? (
-                <LoadingSkeleton count={12} />
-            ) : (
-                <div 
-                    className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4"
-                    data-animate="zoom"
-                    data-delay="0.2"
-                >
-                    {recentContent.map((item) => (
-                        <CommonCard
-                            key={`${item.media_type}-${item.id}`}
-                            {...item}
-                        />
-                    ))}
-                </div>
-            )}
-
-            {/* Empty State */}
-            {!loading && recentContent.length === 0 && (
-                <div className="text-center py-12">
-                    <p className="large text-foreground/60">No recent content found.</p>
-                </div>
-            )}
         </section>
     );
 };

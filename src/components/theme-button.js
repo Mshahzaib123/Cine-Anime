@@ -13,7 +13,7 @@ const ThemeButton = ({
     ...props
 }) => {
     const baseClasses = clsx(
-        "flex items-center justify-center text-center gap-2",
+        "flex items-center justify-center text-center gap-2 cursor-pointer leading-[125%]!",
         "font-bold transition-all duration-400 ease-in-out",
         "rounded-full overflow-hidden"
     );
@@ -36,7 +36,7 @@ const ThemeButton = ({
         sm: "px-4 py-[6px] small",
         md: "px-4 py-2 base",
         lg: "px-8 py-[10px] large",
-        icon: "size-10.5 justify-center cursor-pointer"
+        icon: "size-10.5 justify-center"
     };
     const classes = clsx(
         baseClasses,

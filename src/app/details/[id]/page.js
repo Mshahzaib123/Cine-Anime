@@ -242,117 +242,119 @@ const DetailsPage = ({ params }) => {
                 </section>
 
                 {/* Details Section */}
-                <section className="py-16 container">
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-                        {/* Main Content */}
-                        <div className="lg:col-span-2 space-y-12">
-                            {/* Overview */}
-                            <div data-animate="up">
-                                <h2 className="heading-h3 text-foreground mb-4">Overview</h2>
-                                <p className="large text-foreground/80 leading-relaxed">
-                                    {details.overview || 'No overview available.'}
-                                </p>
+                <section className="my-28">
+                    <div className="container">
+                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                            {/* Main Content */}
+                            <div className="lg:col-span-2 space-y-12">
+                                {/* Overview */}
+                                <div data-animate="up">
+                                    <h2 className="heading-h3 text-foreground mb-4">Overview</h2>
+                                    <p className="large text-foreground/80 leading-relaxed">
+                                        {details.overview || 'No overview available.'}
+                                    </p>
+                                </div>
+
+                                {/* Cast & Crew */}
+                                {details.credits && (
+                                    <div data-animate="up" data-delay="0.1">
+                                        <CastCrewList credits={details.credits} />
+                                    </div>
+                                )}
+
+                                {/* Similar Content */}
+                                {details.similar?.results && details.similar.results.length > 0 && (
+                                    <div data-animate="up" data-delay="0.2">
+                                        <h2 className="heading-h3 text-foreground mb-6">
+                                            More Like This
+                                        </h2>
+                                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                                            {details.similar.results.slice(0, 8).map((item) => (
+                                                <CommonCard
+                                                    key={item.id}
+                                                    {...item}
+                                                    media_type={mediaType}
+                                                />
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
                             </div>
 
-                            {/* Cast & Crew */}
-                            {details.credits && (
-                                <div data-animate="up" data-delay="0.1">
-                                    <CastCrewList credits={details.credits} />
-                                </div>
-                            )}
+                            {/* Sidebar */}
+                            <div className="space-y-8">
+                                {/* Additional Info */}
+                                <div 
+                                    className="bg-foreground/5 rounded-2xl p-6 border border-foreground/10"
+                                    data-animate="up"
+                                    data-delay="0.3"
+                                >
+                                    <h3 className="heading-h5 text-foreground mb-4">Information</h3>
+                                    <div className="space-y-4 text-foreground/80">
+                                        {details.status && (
+                                            <div>
+                                                <p className="text-foreground/60 small mb-1">Status</p>
+                                                <p className="font-semibold">{details.status}</p>
+                                            </div>
+                                        )}
+                                        
+                                        {details.budget > 0 && (
+                                            <div>
+                                                <p className="text-foreground/60 small mb-1">Budget</p>
+                                                <p className="font-semibold">
+                                                    ${details.budget.toLocaleString()}
+                                                </p>
+                                            </div>
+                                        )}
+                                        
+                                        {details.revenue > 0 && (
+                                            <div>
+                                                <p className="text-foreground/60 small mb-1">Revenue</p>
+                                                <p className="font-semibold">
+                                                    ${details.revenue.toLocaleString()}
+                                                </p>
+                                            </div>
+                                        )}
 
-                            {/* Similar Content */}
-                            {details.similar?.results && details.similar.results.length > 0 && (
-                                <div data-animate="up" data-delay="0.2">
-                                    <h2 className="heading-h3 text-foreground mb-6">
-                                        More Like This
-                                    </h2>
-                                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                                        {details.similar.results.slice(0, 8).map((item) => (
-                                            <CommonCard
-                                                key={item.id}
-                                                {...item}
-                                                media_type={mediaType}
-                                            />
-                                        ))}
+                                        {details.number_of_seasons && (
+                                            <div>
+                                                <p className="text-foreground/60 small mb-1">Seasons</p>
+                                                <p className="font-semibold">{details.number_of_seasons}</p>
+                                            </div>
+                                        )}
+
+                                        {details.number_of_episodes && (
+                                            <div>
+                                                <p className="text-foreground/60 small mb-1">Episodes</p>
+                                                <p className="font-semibold">{details.number_of_episodes}</p>
+                                            </div>
+                                        )}
+
+                                        {details.production_companies && details.production_companies.length > 0 && (
+                                            <div>
+                                                <p className="text-foreground/60 small mb-1">Production</p>
+                                                <p className="font-semibold">
+                                                    {details.production_companies[0].name}
+                                                </p>
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
-                            )}
-                        </div>
 
-                        {/* Sidebar */}
-                        <div className="space-y-8">
-                            {/* Additional Info */}
-                            <div 
-                                className="bg-foreground/5 rounded-2xl p-6 border border-foreground/10"
-                                data-animate="up"
-                                data-delay="0.3"
-                            >
-                                <h3 className="heading-h5 text-foreground mb-4">Information</h3>
-                                <div className="space-y-4 text-foreground/80">
-                                    {details.status && (
-                                        <div>
-                                            <p className="text-foreground/60 small mb-1">Status</p>
-                                            <p className="font-semibold">{details.status}</p>
-                                        </div>
-                                    )}
-                                    
-                                    {details.budget > 0 && (
-                                        <div>
-                                            <p className="text-foreground/60 small mb-1">Budget</p>
-                                            <p className="font-semibold">
-                                                ${details.budget.toLocaleString()}
-                                            </p>
-                                        </div>
-                                    )}
-                                    
-                                    {details.revenue > 0 && (
-                                        <div>
-                                            <p className="text-foreground/60 small mb-1">Revenue</p>
-                                            <p className="font-semibold">
-                                                ${details.revenue.toLocaleString()}
-                                            </p>
-                                        </div>
-                                    )}
-
-                                    {details.number_of_seasons && (
-                                        <div>
-                                            <p className="text-foreground/60 small mb-1">Seasons</p>
-                                            <p className="font-semibold">{details.number_of_seasons}</p>
-                                        </div>
-                                    )}
-
-                                    {details.number_of_episodes && (
-                                        <div>
-                                            <p className="text-foreground/60 small mb-1">Episodes</p>
-                                            <p className="font-semibold">{details.number_of_episodes}</p>
-                                        </div>
-                                    )}
-
-                                    {details.production_companies && details.production_companies.length > 0 && (
-                                        <div>
-                                            <p className="text-foreground/60 small mb-1">Production</p>
-                                            <p className="font-semibold">
-                                                {details.production_companies[0].name}
-                                            </p>
-                                        </div>
-                                    )}
-                                </div>
+                                {/* Homepage Link */}
+                                {details.homepage && (
+                                    <ThemeButton
+                                        href={details.homepage}
+                                        variant="outline"
+                                        className="w-full"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        <FiGlobe className="w-5 h-5" />
+                                        Official Website
+                                    </ThemeButton>
+                                )}
                             </div>
-
-                            {/* Homepage Link */}
-                            {details.homepage && (
-                                <ThemeButton
-                                    href={details.homepage}
-                                    variant="outline"
-                                    className="w-full"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    <FiGlobe className="w-5 h-5" />
-                                    Official Website
-                                </ThemeButton>
-                            )}
                         </div>
                     </div>
                 </section>

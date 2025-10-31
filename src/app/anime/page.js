@@ -128,9 +128,9 @@ const AnimePage = () => {
                             data-animate="zoom"
                             data-delay="0.3"
                         >
-                            {animeList.map((anime) => (
+                            {animeList.map((anime, index) => (
                                 <AnimeCard
-                                    key={anime.mal_id}
+                                    key={index}
                                     {...anime}
                                 />
                             ))}

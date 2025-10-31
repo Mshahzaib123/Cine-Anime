@@ -18,8 +18,8 @@
     color-mix(in srgb, var(--primary-color), transparent 50%);
 
   /* Font Size Variables */
-  --font-size-h1: 64px;
-  --font-size-h2: 48px;
+  --font-size-h1: 56px;
+  --font-size-h2: 40px;
   --font-size-h3: 42px;
   --font-size-h4: 36px;
   --font-size-h5: 32px;
@@ -98,25 +98,25 @@ body {
 }
 p {
   font-size: var(--font-size-s);
-  line-height: 140%;
+  line-height: 150%;
 }
 .extra-small {
-  line-height: 140%;
+  line-height: 150%;
   font-size: var(--font-size-xss);
 }
 .small {
-  line-height: 140%;
+  line-height: 150%;
   font-size: var(--font-size-xs);
 }
 .base {
-  line-height: 140%;
+  line-height: 150%;
   font-size: var(--font-size-s);
 }
 .large {
-  line-height: 140%;
+  line-height: 150%;
   font-size: var(--font-size-m);
 }
 .extra-large {
-  line-height: 140%;
+  line-height: 150%;
   font-size: var(--font-size-l);
 }
