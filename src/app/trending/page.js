@@ -6,6 +6,7 @@ import CommonCard from '@/components/common-card';
 import LoadingSkeleton from '@/components/loading-skeleton';
 import Pagination from '@/components/pagination';
 import { fetchTrending } from '@/lib/api';
+import ThemeButton from '@/components/theme-button';
 
 const TrendingPage = () => {
     const [content, setContent] = useState([]);
@@ -46,9 +47,8 @@ const TrendingPage = () => {
     return (
         <main className="min-h-screen py-16">
             <div className="container">
-                {/* Header */}
-                <div className="mb-12" data-animate="up">
-                    <div className="flex items-center gap-3 mb-2">
+                <div className="flex flex-col gap-2" data-animate="up">
+                    <div className="flex items-center gap-3">
                         <FiTrendingUp className="text-primary w-10 h-10" />
                         <h1 className="heading-h1 text-foreground">Trending</h1>
                     </div>
@@ -56,75 +56,41 @@ const TrendingPage = () => {
                         Discover what is popular right now
                     </p>
                 </div>
-
-                {/* Filters */}
-                <div className="space-y-4 mb-8">
-                    {/* Media Type Filter */}
-                    <div data-animate="up" data-delay="0.1">
-                        <p className="text-foreground/60 font-semibold mb-3">Media Type:</p>
-                        <div className="flex items-center gap-3 flex-wrap">
-                            <button
-                                onClick={() => setMediaType('all')}
-                                className={`px-6 py-2 rounded-full font-semibold transition-all duration-300 ${
-                                    mediaType === 'all'
-                                    ? 'bg-primary text-white shadow-shadow'
-                                    : 'bg-foreground/5 text-foreground/70 hover:bg-foreground/10'
-                                }`}
+                <div className="flex items-center justify-between mt-6 mb-16" data-animate="up" data-delay="0.1">
+                    <div className="flex items-center gap-2 bg-foreground/5 p-2 rounded-full">
+                        {[
+                            { label: "All", value: "all" },
+                            { label: "Movies", value: "movie" },
+                            { label: "TV Shows", value: "tv" },
+                        ].map((item) => (
+                            <ThemeButton
+                                key={item.value}
+                                size="sm"
+                                variant={mediaType === item.value ? "fill" : "ghost"}
+                                className="border border-transparent"
+                                onClick={() => setMediaType(item.value)}
                             >
-                                All
-                            </button>
-                            <button
-                                onClick={() => setMediaType('movie')}
-                                className={`px-6 py-2 rounded-full font-semibold transition-all duration-300 ${
-                                    mediaType === 'movie'
-                                    ? 'bg-primary text-white shadow-shadow'
-                                    : 'bg-foreground/5 text-foreground/70 hover:bg-foreground/10'
-                                }`}
-                            >
-                                Movies
-                            </button>
-                            <button
-                                onClick={() => setMediaType('tv')}
-                                className={`px-6 py-2 rounded-full font-semibold transition-all duration-300 ${
-                                    mediaType === 'tv'
-                                    ? 'bg-primary text-white shadow-shadow'
-                                    : 'bg-foreground/5 text-foreground/70 hover:bg-foreground/10'
-                                }`}
-                            >
-                                TV Shows
-                            </button>
-                        </div>
+                                {item.label}
+                            </ThemeButton>
+                        ))}
                     </div>
-
-                    {/* Time Window Filter */}
-                    <div data-animate="up" data-delay="0.2">
-                        <p className="text-foreground/60 font-semibold mb-3">Time Period:</p>
-                        <div className="flex items-center gap-3 flex-wrap">
-                            <button
-                                onClick={() => setTimeWindow('day')}
-                                className={`px-6 py-2 rounded-full font-semibold transition-all duration-300 ${
-                                    timeWindow === 'day'
-                                    ? 'bg-primary text-white shadow-shadow'
-                                    : 'bg-foreground/5 text-foreground/70 hover:bg-foreground/10'
-                                }`}
+                    <div className="flex items-center gap-2 bg-foreground/5 p-2 rounded-full">
+                        {[
+                            { label: "Today", value: "day" },
+                            { label: "This Week", value: "week" },
+                        ].map((item) => (
+                            <ThemeButton
+                                key={item.value}
+                                size="sm"
+                                variant={timeWindow === item.value ? "fill" : "ghost"}
+                                className="border border-transparent"
+                                onClick={() => setTimeWindow(item.value)}
                             >
-                                Today
-                            </button>
-                            <button
-                                onClick={() => setTimeWindow('week')}
-                                className={`px-6 py-2 rounded-full font-semibold transition-all duration-300 ${
-                                    timeWindow === 'week'
-                                    ? 'bg-primary text-white shadow-shadow'
-                                    : 'bg-foreground/5 text-foreground/70 hover:bg-foreground/10'
-                                }`}
-                            >
-                                This Week
-                            </button>
-                        </div>
+                                {item.label}
+                            </ThemeButton>
+                        ))}
                     </div>
                 </div>
-
-                {/* Content Grid */}
                 {loading ? (
                     <LoadingSkeleton count={18} />
                 ) : currentItems.length > 0 ? (
@@ -142,8 +108,6 @@ const TrendingPage = () => {
                                 />
                             ))}
                         </div>
-
-                        {/* Pagination */}
                         {totalPages > 1 && (
                             <Pagination
                                 currentPage={currentPage}

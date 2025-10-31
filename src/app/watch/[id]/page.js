@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, use } from 'react';
+import React, { useState, useEffect, use, useCallback } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import { FiPlay, FiChevronDown, FiCalendar, FiClock, FiStar } from 'react-icons/fi';
@@ -28,57 +28,52 @@ const WatchPage = ({ params }) => {
     useEffect(() => {
         const loadDetails = async () => {
             try {
-                if (mediaType === 'anime') {
-                    // Fetch anime details from Jikan API
+                if (mediaType === "anime") {
                     const response = await axios.get(`https://api.jikan.moe/v4/anime/${id}/full`);
                     const animeData = response.data.data;
                     setDetails(animeData);
-                    
-                    // For anime, create episodes list
                     if (animeData.episodes) {
-                        const episodesList = Array.from({ length: animeData.episodes }, (_, i) => ({
-                            episode_number: i + 1,
-                            name: `Episode ${i + 1}`,
-                            overview: '',
-                            still_path: animeData.images?.jpg?.large_image_url,
-                        }));
-                        setEpisodes(episodesList);
+                    const episodesList = Array.from({ length: animeData.episodes }, (_, i) => ({
+                        episode_number: i + 1,
+                        name: `Episode ${i + 1}`,
+                        overview: "",
+                        still_path: animeData.images?.jpg?.large_image_url,
+                    }));
+                    setEpisodes(episodesList);
                     }
                 } else {
-                    // Fetch TV show details from TMDB
                     const response = await axios.get(
-                        `https://api.themoviedb.org/3/tv/${id}`,
-                        {
-                            params: {
-                                api_key: process.env.NEXT_PUBLIC_TMDB_API_KEY,
-                                append_to_response: 'credits,videos',
-                            },
-                        }
+                    `https://api.themoviedb.org/3/tv/${id}`,
+                    {
+                        params: {
+                        api_key: process.env.NEXT_PUBLIC_TMDB_API_KEY,
+                        append_to_response: "credits,videos",
+                        },
+                    }
                     );
                     setDetails(response.data);
                     setSeasons(response.data.seasons || []);
-                    
-                    // Load first season episodes
-                    if (response.data.seasons && response.data.seasons.length > 0) {
-                        const firstSeason = response.data.seasons.find(s => s.season_number > 0);
-                        if (firstSeason) {
-                            setSelectedSeason(firstSeason.season_number);
-                            loadEpisodes(firstSeason.season_number);
-                        }
+
+                    if (response.data.seasons?.length > 0) {
+                    const firstSeason = response.data.seasons.find(s => s.season_number > 0);
+                    if (firstSeason) {
+                        setSelectedSeason(firstSeason.season_number);
+                        loadEpisodes(firstSeason.season_number);
+                    }
                     }
                 }
             } catch (error) {
-                console.error('Failed to load details:', error);
+                console.error("Failed to load details:", error);
             } finally {
                 setLoading(false);
             }
         };
 
         loadDetails();
-    }, [id, mediaType]);
+    }, [id, mediaType, loadEpisodes]);
 
     // Load episodes for selected season
-    const loadEpisodes = async (seasonNumber) => {
+    const loadEpisodes = useCallback(async (seasonNumber) => {
         if (mediaType === 'anime') return;
         
         try {
@@ -95,7 +90,7 @@ const WatchPage = ({ params }) => {
             console.error('Failed to load episodes:', error);
             setEpisodes([]);
         }
-    };
+    }, [id, mediaType]);
 
     const handleSeasonChange = (seasonNumber) => {
         setSelectedSeason(seasonNumber);
