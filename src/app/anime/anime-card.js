@@ -7,11 +7,10 @@ const AnimeCard = ({ mal_id, title, images, score, aired, synopsis, type, episod
     const imageUrl = images?.jpg?.large_image_url || images?.jpg?.image_url || '/images/ratio-1-1-size-200-200.jpg';
     const year = aired?.from ? new Date(aired.from).getFullYear() : 'N/A';
     const rating = score ? score.toFixed(1) : 'N/A';
+    
     return (
         <Link 
-            href={`https://myanimelist.net/anime/${mal_id}`}
-            target="_blank"
-            rel="noopener noreferrer"
+            href={`/anime/${mal_id}`}
             className="group block"
         >
             <div className="relative overflow-hidden rounded-2xl bg-foreground/5 transition-all duration-300 hover:scale-105 hover:shadow-shadow">

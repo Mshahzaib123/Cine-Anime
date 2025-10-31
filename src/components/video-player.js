@@ -24,6 +24,18 @@ const VideoPlayer = ({ tmdbId, mediaType, title, onClose }) => {
 
     // Multiple embed provider options
     const getEmbedUrl = () => {
+        if (mediaType === 'anime') {
+            switch (embedProvider) {
+                case 'vidsrc':
+                    return `https://vidsrc.xyz/embed/anime/${tmdbId}`;
+                case 'vidsrcpro':
+                    return `https://vidsrc.pro/embed/anime/${tmdbId}`;
+                case '2embed':
+                    return `https://2anime.xyz/embed/${tmdbId}-1`; // -1 for episode 1
+                default:
+                    return `https://vidsrc.xyz/embed/anime/${tmdbId}`;
+            }
+        }
         switch (embedProvider) {
             case 'vidsrc':
                 // VidSrc.to - Most reliable
