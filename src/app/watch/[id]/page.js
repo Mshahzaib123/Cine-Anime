@@ -26,25 +26,6 @@ const WatchPage = ({ params }) => {
 
     // Fetch content details
     useEffect(() => {
-        // Load episodes for selected season
-        const loadEpisodes = async (seasonNumber) => {
-            if (mediaType === 'anime' || mediaType === 'movie') return;
-            
-            try {
-                const response = await axios.get(
-                    `https://api.themoviedb.org/3/tv/${id}/season/${seasonNumber}`,
-                    {
-                        params: {
-                            api_key: process.env.NEXT_PUBLIC_TMDB_API_KEY,
-                        },
-                    }
-                );
-                setEpisodes(response.data.episodes || []);
-            } catch (error) {
-                console.error('Failed to load episodes:', error);
-                setEpisodes([]);
-            }
-        };
         const loadDetails = async () => {
             try {
                 if (mediaType === "anime") {
@@ -107,6 +88,26 @@ const WatchPage = ({ params }) => {
 
         loadDetails();
     }, [id, mediaType]);
+
+    // Load episodes for selected season
+    const loadEpisodes = async (seasonNumber) => {
+        if (mediaType === 'anime' || mediaType === 'movie') return;
+        
+        try {
+            const response = await axios.get(
+                `https://api.themoviedb.org/3/tv/${id}/season/${seasonNumber}`,
+                {
+                    params: {
+                        api_key: process.env.NEXT_PUBLIC_TMDB_API_KEY,
+                    },
+                }
+            );
+            setEpisodes(response.data.episodes || []);
+        } catch (error) {
+            console.error('Failed to load episodes:', error);
+            setEpisodes([]);
+        }
+    };
 
     const handleSeasonChange = (seasonNumber) => {
         setSelectedSeason(seasonNumber);
@@ -174,6 +175,7 @@ const WatchPage = ({ params }) => {
                             key={embedUrl}
                             src={embedUrl}
                             className="w-full h-full"
+                            frameBorder="0"
                             allowFullScreen
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             referrerPolicy="origin"

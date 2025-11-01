@@ -9,7 +9,6 @@ import CastCrewList from '@/components/cast-crew-list';
 import CommonCard from '@/components/common-card';
 import TrailerEmbed from '@/components/trailer-embed';
 import Loader from '@/components/loader';
-import VideoPlayer from '@/components/video-player';
 import { fetchDetails, getImageUrl, BACKDROP_SIZE } from '@/lib/api';
 import { 
     FiPlay, 
@@ -31,7 +30,6 @@ const DetailsPage = ({ params }) => {
     const [loading, setLoading] = useState(true);
     const [isInWatchlist, setIsInWatchlist] = useState(false);
     const [showTrailer, setShowTrailer] = useState(false);
-    const [showPlayer, setShowPlayer] = useState(false);
 
     useEffect(() => {
         const loadDetails = async () => {
@@ -201,7 +199,7 @@ const DetailsPage = ({ params }) => {
                                 <div className="flex flex-wrap gap-4">
                                     <ThemeButton
                                         size="lg"
-                                        onClick={() => setShowPlayer(true)}
+                                        href={`/watch/${id}?type=${mediaType}`}
                                     >
                                         <FiPlay className="w-5 h-5" />
                                         Watch Now
@@ -365,16 +363,6 @@ const DetailsPage = ({ params }) => {
                 <TrailerEmbed
                     videoKey={trailer.key}
                     onClose={() => setShowTrailer(false)}
-                />
-            )}
-
-            {/* Video Player Modal */}
-            {showPlayer && (
-                <VideoPlayer
-                    tmdbId={id}
-                    mediaType={mediaType}
-                    title={title}
-                    onClose={() => setShowPlayer(false)}
                 />
             )}
         </>
